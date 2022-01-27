@@ -67,9 +67,7 @@ function love.keypressed(key)
         end
         --decreace
         if key == "left" then
-                if Filian.XSpeed > 20 then
-                        Filian.XSpeed = Filian.XSpeed * 0.9
-                end
+                Filian.XSpeed = Filian.XSpeed * 0.9
         end
 --Y axis (vertical)
 --increase
@@ -78,9 +76,7 @@ function love.keypressed(key)
         end
         --decreace
         if key == "down" then
-                if Filian.YSpeed > 20 then
-                        Filian.YSpeed = Filian.YSpeed * 0.9
-                end
+                Filian.YSpeed = Filian.YSpeed * 0.9
         end
 
 --fun mode (AKA - Cursed)
