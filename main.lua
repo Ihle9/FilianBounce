@@ -63,23 +63,23 @@ function love.keypressed(key)
 --X axis (side to side)
         --increase
         if key == "right" then
-                Filian.XSpeed = Filian.XSpeed + Filian.XSpeed/math.abs(Filian.XSpeed)*20
+                Filian.XSpeed = Filian.XSpeed * 1.1
         end
         --decreace
         if key == "left" then
                 if Filian.XSpeed > 20 then
-                        Filian.XSpeed = Filian.XSpeed - Filian.XSpeed/math.abs(Filian.XSpeed)*20
+                        Filian.XSpeed = Filian.XSpeed * 0.9
                 end
         end
 --Y axis (vertical)
 --increase
         if key == "up" then
-                Filian.YSpeed = Filian.YSpeed + Filian.YSpeed/math.abs(Filian.YSpeed)*20
+                Filian.YSpeed = Filian.YSpeed * 1.1
         end
         --decreace
         if key == "down" then
                 if Filian.YSpeed > 20 then
-                        Filian.YSpeed = Filian.YSpeed - Filian.YSpeed/math.abs(Filian.YSpeed)*20
+                        Filian.YSpeed = Filian.YSpeed * 0.9
                 end
         end
 
