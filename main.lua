@@ -1,25 +1,33 @@
 --FilianBounce by Ihle9
 function love.load()
-        Filian_Png = love.graphics.newImage("Filian.png")
+        Fil_Versions = {
+                love.graphics.newImage("Filian.png"),
+                love.graphics.newImage("Filian2.png")
+                        }
+
+
+        Current_Fil = 1
+
         Filian = {
-        XPos = Filian_Png:getWidth()/2,
-        YPos = Filian_Png:getHeight()/2,
+        XPos = Fil_Versions[Current_Fil]:getWidth()/2,
+        YPos = Fil_Versions[Current_Fil]:getHeight()/2,
         XSpeed = -250,
         YSpeed = -250,
         Rotation = 0
-                 }
-        Fun_Mode = false
-        Rotation_Speed = 1
-        --green screen
-        love.graphics.setBackgroundColor(0/255,1,1/255)
+}
+
+Fun_Mode = false
+Rotation_Speed = 1
+--green screen
+love.graphics.setBackgroundColor(0/255,1,1/255)
 end
 
 function love.draw()
         --filian
         if Fun_Mode == true then
-                love.graphics.draw(Filian_Png, Filian.XPos + math.random(-70, 70), Filian.YPos + math.random(-70, 70), Filian.Rotation, 1, 1, Filian_Png:getWidth()/2, Filian_Png:getHeight()/2)
+                love.graphics.draw(Fil_Versions[Current_Fil], Filian.XPos + math.random(-70, 70), Filian.YPos + math.random(-70, 70), Filian.Rotation, 1, 1, Fil_Versions[Current_Fil]:getWidth()/2, Fil_Versions[Current_Fil]:getHeight()/2)
         else
-                love.graphics.draw(Filian_Png, Filian.XPos, Filian.YPos, 0, 1, 1, Filian_Png:getWidth()/2, Filian_Png:getHeight()/2)
+                love.graphics.draw(Fil_Versions[Current_Fil], Filian.XPos, Filian.YPos, 0, 1, 1, Fil_Versions[Current_Fil]:getWidth()/2, Fil_Versions[Current_Fil]:getHeight()/2)
         end
 end
 
@@ -28,20 +36,20 @@ function love.update(dt)
         Filian.YPos = Filian.YPos + Filian.YSpeed * dt
 --collition
         --azmith
-        if Filian.XPos < Filian_Png:getWidth()/2 then
+        if Filian.XPos < Fil_Versions[Current_Fil]:getWidth()/2 then
                 Filian.XSpeed = math.abs(Filian.XSpeed)
                 Rotation_Speed = math.random(-3,3)
         end
-        if Filian.XPos > love.graphics.getWidth() - Filian_Png:getWidth()/2 then
+        if Filian.XPos > love.graphics.getWidth() - Fil_Versions[Current_Fil]:getWidth()/2 then
                 Filian.XSpeed = math.abs(Filian.XSpeed) * -1
                 Rotation_Speed = math.random(-3,3)
         end
         --vertical
-        if Filian.YPos < Filian_Png:getHeight()/2 then
+        if Filian.YPos < Fil_Versions[Current_Fil]:getHeight()/2 then
                 Filian.YSpeed = math.abs(Filian.YSpeed)
                 Rotation_Speed = math.random(-3,3)
         end
-        if Filian.YPos > love.graphics.getHeight() - Filian_Png:getHeight()/2 then
+        if Filian.YPos > love.graphics.getHeight() - Fil_Versions[Current_Fil]:getHeight()/2 then
                 Filian.YSpeed = math.abs(Filian.YSpeed) * -1
                 Rotation_Speed = math.random(-3,3)
         end
@@ -84,6 +92,21 @@ function love.keypressed(key)
                 Fun_Mode = not Fun_Mode
                 print(Fun_Mode)
         end
+--next PNG
+        if key == "`" then
+
+                if Current_Fil == #Fil_Versions then
+                        Current_Fil = 1
+                else
+                        Current_Fil = Current_Fil + 1
+                end
+
+        end
+
+--show controls
+        if key == "f1" then
+                love.window.showMessageBox("Keybinds for FilianBounce 1.2","Reset: Enter \nFun Mode: Right Shift \nNext Picture: ` (backtick, same key as the tilde) \nSee Controls: F1 (also pauses the window)\n\nThank you for using FilianBounce by Ihle9",info,false)
+        end
 end
 
-love.window.showMessageBox("Keybinds for FilianBounce 1.0","Reset: Enter \nFun Mode: Right Shift \n\nThank you for using FilianBounce by Ihle9")
+love.window.showMessageBox("Keybinds for FilianBounce 1.2","Reset: Enter \nFun Mode: Right Shift \nNext Picture: ` (backtick, same key as the tilde) \nSee Controls: F1 (also pauses the window)\n\nThank you for using FilianBounce by Ihle9")
